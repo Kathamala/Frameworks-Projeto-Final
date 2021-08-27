@@ -1,0 +1,38 @@
+{
+    "carousel": [
+        {
+            "img": "https://i1.wp.com/categorianerd.com/wp-content/uploads/2021/04/rick-and-morty-temporada-5-foto-adult-swim-conteudo-categoria-nerd-72204903.jpg?fit=1200%2C675&ssl=1",
+            "descricao": "Rick and Morty Season 5 airs June 20th, 2020!"
+        },
+        {
+            "img": "https://wallpaperaccess.com/full/862646.jpg",
+            "descricao": "Pickle Rick!"
+        },
+        {
+            "img": "https://i.ytimg.com/vi/l4iZtDBYkZA/maxresdefault.jpg",
+            "descricao": "I'm Mr. Meeseeks, look at me!"
+        },
+        {
+            "img": "https://images.alphacoders.com/641/641547.jpg",
+            "descricao": "Rick and Morty Season 1 aired on December 2th, 2013!"
+        },
+        {
+            "img": "https://i.ytimg.com/vi/p0jxLrOiHe8/maxresdefault.jpg",
+            "descricao": "Aw geez Rick!"
+        }
+    ],
+    "episodios": [
+        {
+            "img": "https://occ-0-1068-92.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABSZLyW11oofROhe_xD9TFaJ9dqaJL4e-P6Opptq03xupRtHGAZxQZthXiC01hu1hRV9eI06S8emXha7rM_FNsHkEeY4S.jpg?r=229",
+            "descricao": "Rick takes Morty on a trip to another dimension to find seeds for mega-trees, while Jerry and Beth argue over Rick's influence on their son."
+        },
+        {
+            "img": "https://static.wikia.nocookie.net/rick-e-morty/images/d/d7/Lawnmower_Dog.png/revision/latest?cb=20180727044014&path-prefix=pt-br",
+            "descricao": "Rick creates a device to make family dog Snuffles smarter, but it goes poorly. Rick and Morty invade the dreams of Morty's math teacher."
+        },
+        {
+            "img": "https://assets1.ignimgs.com/2015/07/27/ram0724151280jpg-597467_160w.jpg?width=1280",
+            "descricao": "Morty ends up at a bizarre theme park of infectios diseases located inside of a homeless man. Jerry's parensts introdice their new mutual lover."
+        }
+    ]
+}

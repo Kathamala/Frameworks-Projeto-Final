@@ -1,3 +1,26 @@
+@import '~antd/dist/antd.css';
+
+.container {
+  position: relative;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.centered {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+img {
+  background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+}
+
 .App {
   text-align: center;
 }

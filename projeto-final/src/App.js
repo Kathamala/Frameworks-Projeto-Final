@@ -1,45 +1,81 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-import api from './api';
+import './styles.css'
 import { Component } from 'react';
+import Episodes from './Episodes';
+import complements from './complements.json';
+
+import axios from 'axios';
 
 class App extends Component{
 
   state = {
-    cartas: [],
+    eps: [],
+    characters: [],
+    carouselImages: complements.carousel
   }
 
   async componentDidMount(){
-    const response = await api.get('');
+    
+    var full_ep_list = [];
 
-    console.log(response.data);
+    //episodes
+    const ep_api = axios.create({
+      baseURL: 'https://rickandmortyapi.com/api/episode'
+    });
 
-    this.setState({ cartas: response.data});
+    const ep_response = await ep_api.get('');
+
+    for(var i=0; i<ep_response.data.info.pages; i++){
+      const ep_page_api = axios.create({
+        baseURL: 'https://rickandmortyapi.com/api/episode?page='+(i+1)
+      });
+
+      const ep_page_response = await ep_page_api.get('');
+
+      for(var j=0; j<ep_page_response.data.results.length; j++){
+        full_ep_list.push(ep_page_response.data.results[j]);
+      }
+    }
+
+    var full_characters_list = [];
+
+    //characters
+    const char_api = axios.create({
+      baseURL: 'https://rickandmortyapi.com/api/character'
+    });
+
+    const char_response = await char_api.get('');
+
+    for(i=0; i<char_response.data.info.pages; i++){
+      const char_page_api = axios.create({
+        baseURL: 'https://rickandmortyapi.com/api/character?page='+(i+1)
+      });
+
+      const char_page_response = await char_page_api.get('');
+
+      for(j=0; j<char_page_response.data.results.length; j++){
+        full_characters_list.push(char_page_response.data.results[j]);
+      }
+    }
+
+    this.setState({ eps: full_ep_list, characters : full_characters_list});
   }
 
   render(){
+    var eps_by_season = [[], [], [], []];
 
-    const { cartas } = this.state;
+    for(var i=0; i<this.state.eps.length; i++){
+      let position = this.state.eps[i].episode[2];
+      eps_by_season[position-1].push(this.state.eps[i]);
+    }
 
     return(
       <div>
-          <h1>Listar</h1>
+          <Episodes episodes={eps_by_season} carouselImages={this.state.carouselImages}></Episodes>
       </div>
     );
   }
 }
 
 export default App;
-
-/*
-
-          { console.log(cartas) }
-          {cartas.map(elemento => (
-            <li key={elemento.show.id}>
-              <h2>
-                <strong>Título: </strong>
-                {elemento.show.name}
-              </h2>
-            </li>
-          ))}
-*/
