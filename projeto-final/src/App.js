@@ -3,7 +3,10 @@ import './App.css';
 import './styles.css'
 import { Component } from 'react';
 import Episodes from './Episodes';
+import Characters from './Characters';
+import About from './About';
 import complements from './complements.json';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import axios from 'axios';
 
@@ -70,12 +73,29 @@ class App extends Component{
       eps_by_season[position-1].push(this.state.eps[i]);
     }
 
+    console.log(this.state.characters);
+
     return(
-      <div>
-          <Episodes episodes={eps_by_season} carouselImages={this.state.carouselImages}></Episodes>
-      </div>
+      <>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <Episodes episodes={eps_by_season} carouselImages={this.state.carouselImages}></Episodes>
+            </Route>
+
+            <Route exact path="/characters">
+              <Characters characters={this.state.characters} ></Characters>
+            </Route>
+
+            <Route exact path="/about">
+              <About></About>
+            </Route>            
+          </Switch>
+        </BrowserRouter>
+      </>
     );
   }
 }
-
+//  <Episodes episodes={eps_by_season} carouselImages={this.state.carouselImages}></Episodes>
+//  <Characters characters={this.state.characters} ></Characters>
 export default App;
