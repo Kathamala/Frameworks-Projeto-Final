@@ -1,21 +1,16 @@
 import './styles.css'
 import MenuBar from './MenuBar';
-import { Avatar, Modal } from 'antd';
+import { Avatar, Modal, Row, Col, PageHeader } from 'antd';
 import CharacterModal from './CharacterModal';
 
 import React, { useState } from 'react';
 
 import { Layout } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined
-} from '@ant-design/icons';
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 export default function Characters(props) {
 
-    const [collapsed, setCollapsed] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState({});
 
@@ -33,36 +28,27 @@ export default function Characters(props) {
     };       
 
     const characters = props.characters.map((char, index) => (
-        <span key={index.toString()} onClick={() => showModal(char)}>
-            <Avatar size={64} src={char.image} />
-            <p key={index.toString()}>
-                <strong>{char.name}:</strong>
-                <br/>
-                {char.species}
-            </p>  
-        </span>
+        <Col span={4} key={index.toString()} onClick={() => showModal(char)}>
+            <center>
+                <Avatar size={128} src={char.image} />
+                <p key={index.toString()}>
+                        <strong>{char.name}</strong>
+                    <br/>
+                    {char.species}
+                </p> 
+            </center> 
+        </Col>
     ))
-
-    function toogle(){
-        setCollapsed(!collapsed);
-    }
 
     return (
         <>
             <Layout>
-                <Sider trigger={null} collapsible collapsed={collapsed}>
+                <Sider trigger={null} collapsible collapsed={false}>
                     <div className="logo" />
                     <MenuBar defaultSelected="2"></MenuBar>
                 </Sider>
 
                 <Layout className="site-layout">
-
-                    <Header className="site-layout-background" style={{ padding: 0 }}>
-                        {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                        className: 'trigger',
-                        onClick: toogle,
-                        })}
-                    </Header>
 
                     <Content
                         className="site-layout-background"
@@ -73,11 +59,18 @@ export default function Characters(props) {
                         }}
                     >
 
-                        <strong>CHARACTERS</strong>
+                        <PageHeader
+                            className="site-page-header"
+                            onBack={() => null}
+                            title="Characters"
+                            backIcon={false}
+                        />
                         <br/><br/>
                         
                         <div style={{display: 'inline'}}>
-                            {characters}
+                            <Row gutter={16}>
+                                {characters}
+                            </Row>
                         </div>
 
                     </Content>

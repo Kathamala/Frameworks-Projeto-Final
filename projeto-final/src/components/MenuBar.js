@@ -46,14 +46,4 @@ class MenuBar extends React.Component {
   }
 }
 
-/*
-
-        
-        <Affix style={{ position: 'absolute', left: '260px' }}>
-          <Button onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-          </Button>
-        </Affix>
-*/
-
 export default MenuBar;

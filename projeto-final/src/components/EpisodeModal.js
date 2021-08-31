@@ -7,7 +7,7 @@ export default function EpisodeModal(props) {
     return (
         <>
             <br/>
-            <img src={props.modalContent.complement?.img} style={{ height: '275px', width: '475px' }} alt={props.modalContent.complement?.descricao}/>
+            <img src={props.modalContent.complement?.img} style={{ height: '100%', width: '100%' }} alt={props.modalContent.complement?.descricao}/>
             <br/><br/>
             <strong>{props.modalContent.ep.episode}</strong><br/>
             <p>{props.modalContent.ep.name}</p>

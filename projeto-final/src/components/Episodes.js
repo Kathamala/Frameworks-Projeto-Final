@@ -4,24 +4,14 @@ import EpisodeModal from './EpisodeModal';
 import './styles.css'
 import React, { useState } from 'react';
 
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined
-} from '@ant-design/icons';
-
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 const { Panel } = Collapse;
 
 export default function Episodes(props) {
 
-    const [collapsed, setCollapsed] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState({});
-
-    function toogle(){
-        setCollapsed(!collapsed);
-    }
 
     const showModal = (episode) => {
         setModalContent({ep: episode, complement: props.episodesComplements[episode.id-1]});
@@ -75,25 +65,16 @@ export default function Episodes(props) {
     return (
       <>
         <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+            <Sider trigger={null} collapsible collapsed={false}>
                 <div className="logo" />
                 <MenuBar defaultSelected="1"></MenuBar>
             </Sider>
 
             <Layout className="site-layout">
 
-                <Header className="site-layout-background" style={{ padding: 0 }}>
-                    {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                    className: 'trigger',
-                    onClick: toogle,
-                    })}
-                </Header>
-
                 <Content
                     className="site-layout-background"
                     style={{
-                    margin: '24px 16px',
-                    padding: 24,
                     minHeight: 800,
                     }}
                 >
