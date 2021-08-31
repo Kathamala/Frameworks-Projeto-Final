@@ -45,7 +45,8 @@ export default function About(props) {
                         }}
                     >
 
-                        <p>ABOUT</p>
+                        <strong>ABOUT</strong>
+                        <p>This application lists every episode of the Rick And Morty series, and every character that ever appeard on the show.</p>
 
                     </Content>
                 </Layout>

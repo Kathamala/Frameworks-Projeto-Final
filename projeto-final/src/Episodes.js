@@ -1,5 +1,6 @@
-import { Carousel, Collapse, Layout, Card } from 'antd';
+import { Carousel, Collapse, Layout, Card, Modal } from 'antd';
 import MenuBar from './MenuBar';
+import EpisodeModal from './EpisodeModal';
 import './styles.css'
 import React, { useState } from 'react';
 
@@ -15,12 +16,31 @@ const { Panel } = Collapse;
 export default function Episodes(props) {
 
     const [collapsed, setCollapsed] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [modalContent, setModalContent] = useState({});
+
+    function toogle(){
+        setCollapsed(!collapsed);
+    }
+
+    const showModal = (episode) => {
+        setModalContent({ep: episode, complement: props.episodesComplements[episode.id-1]});
+        setIsModalVisible(true);
+    };
+    
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+    
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };         
 
     const episodes = props.episodes.map((season, index) => (
         <Panel header={"Season " + (index+1)} key={index.toString()}>
             {
-                season.map((ep, index) => (
-                    <p key={index.toString()}>
+                season.map((ep, jndex) => (
+                    <p key={(jndex).toString()} onClick={() => showModal(ep)}>
                         <strong>{ep.episode}:</strong>
                         <br/>
                         {ep.name}
@@ -50,11 +70,7 @@ export default function Episodes(props) {
                 </div>
             </div>
         </div>
-    ))
-
-    function toogle(){
-        setCollapsed(!collapsed);
-    }
+    ))   
 
     return (
       <>
@@ -95,19 +111,10 @@ export default function Episodes(props) {
                 </Content>
             </Layout>
         </Layout>    
+
+        <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            <EpisodeModal modalContent={modalContent}></EpisodeModal>
+        </Modal>        
       </>
     )      
   }
-
-  /*
-
-                    <Collapse>
-                        <Panel header="Episodes" key="1">
-                            <Collapse defaultActiveKey="1">
-                                {episodes}
-                            </Collapse>
-                        </Panel>
-                    </Collapse>  
- 
-  
-  */

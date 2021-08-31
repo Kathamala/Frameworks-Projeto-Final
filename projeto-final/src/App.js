@@ -73,14 +73,14 @@ class App extends Component{
       eps_by_season[position-1].push(this.state.eps[i]);
     }
 
-    console.log(this.state.characters);
+    //console.log(this.state.characters);
 
     return(
       <>
         <BrowserRouter>
           <Switch>
             <Route exact path="/">
-              <Episodes episodes={eps_by_season} carouselImages={this.state.carouselImages}></Episodes>
+              <Episodes episodes={eps_by_season} carouselImages={this.state.carouselImages} episodesComplements={complements.episodios}></Episodes>
             </Route>
 
             <Route exact path="/characters">
@@ -96,6 +96,5 @@ class App extends Component{
     );
   }
 }
-//  <Episodes episodes={eps_by_season} carouselImages={this.state.carouselImages}></Episodes>
-//  <Characters characters={this.state.characters} ></Characters>
+
 export default App;

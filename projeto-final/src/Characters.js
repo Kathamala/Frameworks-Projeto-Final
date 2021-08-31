@@ -1,6 +1,7 @@
 import './styles.css'
 import MenuBar from './MenuBar';
-import { Avatar } from 'antd';
+import { Avatar, Modal } from 'antd';
+import CharacterModal from './CharacterModal';
 
 import React, { useState } from 'react';
 
@@ -15,9 +16,24 @@ const { Header, Sider, Content } = Layout;
 export default function Characters(props) {
 
     const [collapsed, setCollapsed] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [modalContent, setModalContent] = useState({});
+
+    const showModal = (character) => {
+        setModalContent(character);
+        setIsModalVisible(true);
+    };
+    
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+    
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };       
 
     const characters = props.characters.map((char, index) => (
-        <span key={index.toString()}>
+        <span key={index.toString()} onClick={() => showModal(char)}>
             <Avatar size={64} src={char.image} />
             <p key={index.toString()}>
                 <strong>{char.name}:</strong>
@@ -57,7 +73,8 @@ export default function Characters(props) {
                         }}
                     >
 
-                        <p>CHARACTERS</p>
+                        <strong>CHARACTERS</strong>
+                        <br/><br/>
                         
                         <div style={{display: 'inline'}}>
                             {characters}
@@ -65,7 +82,11 @@ export default function Characters(props) {
 
                     </Content>
                 </Layout>
-            </Layout>             
+            </Layout>  
+
+            <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                <CharacterModal modalContent={modalContent}></CharacterModal>
+            </Modal>                          
         </>
     )      
   }
