@@ -1,10 +1,10 @@
 //import logo from './logo.svg';
 import './App.css';
-import './styles.css'
+import './components/styles.css'
 import { Component } from 'react';
-import Episodes from './Episodes';
-import Characters from './Characters';
-import About from './About';
+import Episodes from './components/Episodes';
+import Characters from './components/Characters';
+import About from './components/About';
 import complements from './complements.json';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
